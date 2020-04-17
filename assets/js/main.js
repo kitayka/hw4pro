@@ -5,46 +5,87 @@ let arr = [
     [-63,4,-54,76,-4],
     [12,-35,4,47]
 ];
-let positiveArr = [];
-let sumPositiveEl = 0;
-let minElArray = [];
-let negativeArr = [];
 
-function calcQuantityPositiveEl(arr) {
+function calcSumPositiveEl(array) {
+    let sumPositiveEl = 0;
+    for (let i = 0; i < arr.length; i++) {
+        let items = arr[i];
+        for (let j = 0; j < items.length; j++) {
+            if (items[j] > 0) {
+                sumPositiveEl = sumPositiveEl + items[j];
+            }
+        }
+    }
+    return sumPositiveEl;
+}
+console.log("Сумма положительных элементов массива: " + calcSumPositiveEl(arr));
+
+
+function calcQuantityPositiveEl(array) {
+    let positiveArr = [];
+    let quantityPositiveEl = 0;
     for (let i = 0; i < arr.length; i++) {
         let items = arr[i];
         for (let j = 0; j < items.length; j++) {
             if (items[j] > 0) {
                 positiveArr.push(items[j]);
-                sumPositiveEl = sumPositiveEl + items[j];
+                quantityPositiveEl = positiveArr.length;
             }
         }
     }
-    console.log("Сумма положительных элементов массива: " + sumPositiveEl);
-    console.log("Количество положительных элементов в массиве: " + positiveArr.length);
+    return quantityPositiveEl;
 }
-calcQuantityPositiveEl(arr);
+console.log("Количество положительных элементов в массиве: " + calcQuantityPositiveEl(arr));
 
-function findMinIndex(array) {
+function findMinEl(array) {
+    let minElement = null;
+    for (let i = 0; i < array.length; i++) {
+        const arr = array[i];
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[j] < minElement) {
+                minElement = arr[j]
+            }
+        }
+    }
+    return minElement;
+}
+console.log("Минимальный элемент массива: " + findMinEl(arr));
+
+function findMinElIndex(array) {
     let minIndexI = null;
     let minIndexJ = null;
     let minElement = null;
+    let arrIndex = [];
     for (let i = 0; i < array.length; i++) {
         const arr = array[i];
         for (let j = 0; j < arr.length; j++) {
             if(minElement === null || arr[j] < minElement) {
                 minIndexI = i;
                 minIndexJ = j;
-                minElement = arr[j]
+                minElement = arr[j];
+
             }
         }
     }
-    console.log("Минимальный элемент массива: " + minElement);
-    console.log("Координаты минимального элемента: [" + minIndexI + "][" + minIndexJ + "]");
+    return [minIndexI, minIndexJ];
 }
-findMinIndex(arr);
+console.log("Индекс наименьшего элемента массива: " + findMinElIndex(arr));
 
-function findMaxIndex(array) {
+function findMaxEl(array) {
+    let maxElement = null;
+    for (let i = 0; i < array.length; i++) {
+        const arr = array[i];
+        for (let j = 0; j < arr.length; j++) {
+            if(arr[j] > maxElement) {
+                maxElement = arr[j]
+            }
+        }
+    }
+    return maxElement;
+}
+console.log("Максимальный элемент массива: " + findMaxEl(arr));
+
+function findMaxElIndex(array) {
     let maxIndexI = null;
     let maxIndexJ = null;
     let maxElement = null;
@@ -54,60 +95,67 @@ function findMaxIndex(array) {
             if(maxElement === null || arr[j] > maxElement) {
                 maxIndexI = i;
                 maxIndexJ = j;
-                maxElement = arr[j]
+                maxElement = arr[j];
             }
         }
     }
-    console.log("Максимальный элемент массива: " + maxElement);
-    console.log("Координаты максимального элемента: [" + maxIndexI + "][" + maxIndexJ + "]");
+    return [maxIndexI, maxIndexJ];
 }
-findMaxIndex(arr);
+console.log("Индекс наименьшего элемента массива: " + findMaxElIndex(arr));
 
 function getQuantityNegativeEl (array) {
+    let negativeArr = [];
+    let quantityNegativeEl = 0;
     for (let i = 0; i < arr.length; i++) {
         let items = arr[i];
         for (let j = 0; j < items.length; j++) {
             if (items[j] < 0) {
                 negativeArr.push(items[j]);
+                quantityNegativeEl = negativeArr.length;
             }
         }
     }
-    console.log("Количество отрицательных элементов в массиве: " + negativeArr.length);
+    return quantityNegativeEl;
 }
-getQuantityNegativeEl(arr);
+console.log("Количество отрицательных элементов в массиве: " + getQuantityNegativeEl(arr));
 
 
 function getQuantityOddEl (array) {
     let oddEl = [];
+    let quantityOddEl = 0;
     for (let i = 0; i < arr.length; i++) {
         let items = arr[i];
         for (let j = 0; j < items.length; j++) {
             let arrayIJ = items[j];
             if ((arrayIJ % 2 !== 0) && (items[j] > 0))  {
                 oddEl.push(arrayIJ);
+                quantityOddEl = oddEl.length;
             }
         }
     }
-    console.log("Количество нечетных положительных элементов: " + oddEl.length);
+    return quantityOddEl;
 }
-getQuantityOddEl(arr);
+console.log("Количество нечетных положительных элементов: " + getQuantityOddEl(arr));
 
 function getQuantityEvenEl (array) {
     let evenEl = [];
+    let quantityEvenEl = 0;
     for (let i = 0; i < arr.length; i++) {
         let items = arr[i];
         for (let j = 0; j < items.length; j++) {
             let arrayIJ = items[j];
             if ((arrayIJ % 2 == 0) && (items[j] > 0))  {
                 evenEl.push(arrayIJ);
+                quantityEvenEl = evenEl.length;
             }
         }
     }
-    console.log("Количество четных положительных элементов: " + evenEl.length);
+    return quantityEvenEl;
 }
-getQuantityEvenEl(arr);
+console.log("Количество четных положительных элементов: " + getQuantityEvenEl(arr));
 
 function calcMultiplayPositiveEl (array) {
+    let positiveArr = [];
     let multiplayPositiveEl = 1;
     for (let i = 0; i < arr.length; i++) {
         let items = arr[i];
@@ -118,6 +166,6 @@ function calcMultiplayPositiveEl (array) {
             }
         }
     }
-    console.log("Произведение положительных элементов массива: " + multiplayPositiveEl);
+    return multiplayPositiveEl;
 }
-calcMultiplayPositiveEl(arr);
+console.log("Произведение положительных элементов массива: " + calcMultiplayPositiveEl(arr));
